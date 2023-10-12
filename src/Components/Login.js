@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Header from "./Header";
 import {
   createUserWithEmailAndPassword,
@@ -7,13 +9,18 @@ import {
 } from "firebase/auth";
 
 import { auth } from "../utils/firebase";
+import { addUser } from "../utils/userSlice";
 
 import { BACKGROUND_IMG_URL } from "../utils/constants";
 import { checkValidation } from "../utils/validateForm";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [isSignIn, SetIsSignIn] = useState(true);
   const [errMessage, setErrMessage] = useState();
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const name = useRef(null);
 
@@ -40,6 +47,29 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://igimages.gumlet.io/telugu/home/alia-bhatt-051121.jpg?w=376&dpr=2.6",
+          })
+            .then(() => {
+              // Profile updated!
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrMessage(error.message);
+            });
+          navigate("/browse");
           console.log(user);
         })
         .catch((error) => {
@@ -57,6 +87,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          navigate("/browse");
           console.log(user);
         })
         .catch((error) => {
