@@ -98,7 +98,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          className="min-h-screen bg-cover"
+          className="min-h-screen  object-cover "
           src={BACKGROUND_IMG_URL}
           alt="bg-logo"
         />
@@ -106,7 +106,7 @@ const Login = () => {
       <div>
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="  w-full min-h-50 absolute p-12 md:w-3/12 my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-70 bg-black "
+          className="  w-full md:w-4/12 absolute p-12 bg-gray-900 my-36 mx-auto right-0 left-0 text-white bg-opacity-80 "
         >
           <h1 className="font-bold text-3xl py-4">
             {isSignIn ? "Sign In" : "Sign Up"}
@@ -117,14 +117,14 @@ const Login = () => {
               ref={name}
               type="text"
               placeholder="Full Name"
-              className="p-4 my-6 w-full bg-gray-700"
+              className="p-4 my-6 w-full bg-gray-700 rounded-md"
             />
           )}
           <input
             ref={email}
             type="text"
             placeholder="Email address"
-            className="p-4 my-6 w-full bg-gray-700"
+            className="p-4 my-6 w-full bg-gray-700 rounded-md"
           />
           <input
             ref={password}
@@ -132,13 +132,13 @@ const Login = () => {
             placeholder="Password"
             className="p-4 my-6 w-full bg-gray-700"
           />
-          <p className="text-red-500 font-bold py-2">{errMessage}</p>
+          <p className="text-red-500  text-lg font-bold py-2">{errMessage}</p>
 
           <button
             className="p-4 my-6 bg-red-700 w-full rounded-lg"
             onClick={handleButtonClick}
           >
-            {isSignIn ? "Sign In" : "Sign Up"}
+            {isSignIn ? "Sign In guys" : "Sign Up guys"}
           </button>
           <p className="py-4 cursor-pointer" onClick={handleSignInForm}>
             {isSignIn

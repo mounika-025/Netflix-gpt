@@ -54,13 +54,13 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className="absolute px-8 py-2 w-screen bg-gradient-to-b from-black z-50 flex justify-between">
+    <div className="absolute px-8 py-2 w-screen bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
       <img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
       {user && (
-        <div className="flex p-2 justify-between gap-4">
+        <div className="flex p-2 justify-between ">
           {showGptSearch && (
             <select
-              className="p-2 bg-gray-900 text-white rounded-lg m-2"
+              className="p-2 m-2 my-4 h-12 bg-gray-900 text-white rounded-lg "
               onChange={handleLangChange}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -71,18 +71,18 @@ const Header = () => {
             </select>
           )}
           <button
-            className="py-2 px-4 mx-4 my-2 bg-gradient-to-r from-red-600 to-red-900 hover:from-red-500 hover:to-red-700 text-white rounded-lg shadow-md transform hover:scale-105 transition duration-300 ease-in-out border-2 border-red-900"
+            className="py-0 h-12 px-4  mx-4 my-4 bg-gradient-to-r from-red-600 to-red-900 hover:from-red-500 hover:to-red-700 text-white rounded-lg shadow-md transform hover:scale-105 transition duration-300 ease-in-out border-2 border-red-900"
             onClick={handleGptSearch}
           >
             {showGptSearch ? "Homepage" : "GPT Search"}
           </button>
           <img
-            className="hidden md:block w-12 h-12"
+            className="hidden md:inline-block w-10 h-9 my-6"
             alt="usericon"
             src={user?.photoURL}
           />
-          <p>{user?.displayName}</p>
-          <button onClick={handleSignOut} className="font-bold text-white p-2">
+
+          <button onClick={handleSignOut} className="font-bold text-white ">
             Sign Out
           </button>
         </div>
