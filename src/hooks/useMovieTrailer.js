@@ -6,6 +6,7 @@ import { addTrailerVideo } from "../utils/moviesSlice";
 const useMovieTrailer = (movieId) => {
   const dispatch = useDispatch();
   const trailerVideo = useSelector((store) => store.movies.trailerVideo);
+  console.log(trailerVideo);
   const getMovieTrailer = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/" +
